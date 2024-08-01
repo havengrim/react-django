@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container mx-auto p-4">
+        <form method="POST" action="{% url 'edit' member.pk %}" autocomplete="off" class="bg-white p-6 rounded-lg w-full mt-5">
+            <h2 class="text-4xl font-semibold mb-5">Edit User</h2>
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="fname" class="block text-sm font-medium text-gray-700">First Name</label>
+                <input type="text" id="fname" name="fname" value="{{ form.fname.value }}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="First Name">
+            </div>
+            <div class="mb-4">
+                <label for="lname" class="block text-sm font-medium text-gray-700">Last Name</label>
+                <input type="text" id="lname" name="lname" value="{{ form.lname.value }}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Last Name">
+            </div>
+            <div class="mb-4">
+                <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
+                <input type="text" id="age" name="age" value="{{ form.age.value }}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Age">
+            </div>
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                <input type="email" id="email" name="email" value="{{ form.email.value }}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Email Address">
+            </div>
+            <div class="mb-4">
+                <label for="passwd" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" id="passwd" name="passwd" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Password">
+            </div>
+            <button type="submit" class="w-full px-4 py-2 bg-blue-500 text-white font-semibold rounded-md shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                Update
+            </button>
+        </form>
+    </div>
+{% endblock %}
