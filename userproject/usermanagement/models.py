@@ -7,6 +7,7 @@ class Member(models.Model):
     email = models.EmailField(max_length=255) 
     passwd = models.CharField(max_length=255) 
     age = models.IntegerField()
+    is_active = models.BooleanField(default=True)
     
 
     def __str__(self):

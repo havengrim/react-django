@@ -7,23 +7,37 @@
             {% csrf_token %}
             <div class="mb-4">
                 <label for="fname" class="block text-sm font-medium text-gray-700">First Name</label>
-                <input type="text" id="fname" name="fname" value="{{ form.fname.value }}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="First Name">
+                <input type="text" id="fname" name="fname" value="{{ member.fname }}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="First Name">
             </div>
             <div class="mb-4">
                 <label for="lname" class="block text-sm font-medium text-gray-700">Last Name</label>
-                <input type="text" id="lname" name="lname" value="{{ form.lname.value }}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Last Name">
+                <input type="text" id="lname" name="lname" value="{{ member.lname }}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Last Name">
             </div>
             <div class="mb-4">
                 <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
-                <input type="text" id="age" name="age" value="{{ form.age.value }}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Age">
+                <input type="text" id="age" name="age" value="{{ member.age }}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Age">
             </div>
             <div class="mb-4">
                 <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
-                <input type="email" id="email" name="email" value="{{ form.email.value }}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Email Address">
+                <input type="email" id="email" name="email" value="{{ member.email }}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Email Address">
             </div>
             <div class="mb-4">
                 <label for="passwd" class="block text-sm font-medium text-gray-700">Password</label>
-                <input type="password" id="passwd" name="passwd" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Password">
+                <input type="password" id="passwd" name="passwd" value="{{ member.passwd }}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Password">
+            </div>
+            <div class="mb-4">
+                <label for="is_active" class="block text-sm font-medium text-gray-700">Status</label>
+                <div class="relative">
+                    <select id="is_active" name="is_active" class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-500 px-3 py-2 pr-8 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        <option value="true" {% if member.is_active %}selected{% endif %}>Active</option>
+                        <option value="false" {% if not member.is_active %}selected{% endif %}>Inactive</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M7 10l5 5 5-5H7z"/>
+                        </svg>
+                    </div>
+                </div>
             </div>
             <button type="submit" class="w-full px-4 py-2 bg-blue-500 text-white font-semibold rounded-md shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                 Update
