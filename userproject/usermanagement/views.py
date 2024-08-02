@@ -10,8 +10,8 @@ def home(request):
 
 def join(request):
     if request.method == "POST":
-         form = MemberForm(request.POST or None)
-         if form.is_valid():
+        form = MemberForm(request.POST or None)
+        if form.is_valid():
             form.save()
             messages.success(request, ('Your Form Has Been Submitted!'))
             return redirect('home')
