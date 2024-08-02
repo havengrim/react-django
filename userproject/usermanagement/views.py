@@ -3,21 +3,21 @@ from .models import Member
 from .forms import MemberForm
 from django.contrib import messages
 
-# Create your views here.
 def home(request):
     all_members = Member.objects.all()
-    return render(request, 'home.html', {'all':all_members})
+    return render(request, 'home.html', {'all': all_members})
 
 def join(request):
     if request.method == "POST":
-        form = MemberForm(request.POST or None)
+        form = MemberForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, ('Your Form Has Been Submitted!'))
+            messages.success(request, 'Your Form Has Been Submitted!')
             return redirect('home')
     else:
-        return render(request, 'join.html', {})
-    
+        form = MemberForm()
+    return render(request, 'join.html', {'form': form})
+
 def edit(request, pk):
     member = get_object_or_404(Member, pk=pk)
     if request.method == "POST":
@@ -28,4 +28,12 @@ def edit(request, pk):
             return redirect('home')
     else:
         form = MemberForm(instance=member)
-    return render(request, 'edit.html', {'form': form})
+        return render(request, 'edit.html', {'form': form, 'member': member})
+    
+def delete_member(request, pk):
+    member = get_object_or_404(Member, pk=pk)
+    if request.method == "POST":
+        member.delete()
+        messages.success(request, 'Member has been deleted!')
+        return redirect('home')
+    return redirect('home')
